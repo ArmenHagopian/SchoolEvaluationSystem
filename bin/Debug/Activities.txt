@@ -1,0 +1,3 @@
+5;Informatique;IN20;Quentin;Lurkin
+7;Math;MA20;Ruben;Hillewaere
+3;Base de donnees;BD20;Andre;Lorge

@@ -1,0 +1,4 @@
+Quentin;Lurkin;2500
+Sebastien;Combefis;2500
+Andre;Lorge;2500
+Ruben;Hillewaere;2500

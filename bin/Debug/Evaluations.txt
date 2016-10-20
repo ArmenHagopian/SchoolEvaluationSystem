@@ -1,0 +1,12 @@
+Armen;Hagopian
+IN20;12
+MA20;N
+BD20;X
+Gaetan;Guru
+IN20;18
+MA20;X
+BD20;17
+Jean;Paul
+IN20;11
+MA20;9
+BD20;7
