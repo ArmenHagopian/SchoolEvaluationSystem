@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Relations_classes_objets
+namespace EvaluationSystem
 {
 	public class Appreciation : Evaluation
 	{

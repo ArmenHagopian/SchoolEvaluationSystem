@@ -1,4 +1,4 @@
-Quentin;Lurkin;2500
-Sebastien;Combefis;2500
-Andre;Lorge;2500
-Ruben;Hillewaere;2500
+Quentin;Lurkin;2500;LUR
+Sebastien;Combefis;2500;CBF
+Andre;Lorge;2500;LRG
+Ruben;Hillewaere;2500;HIL

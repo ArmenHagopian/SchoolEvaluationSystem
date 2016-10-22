@@ -1,129 +1,107 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Relations_classes_objets
+namespace EvaluationSystem
 {
 	class MainClass
 	{
 
 		public static void Main(string[] args)
 		{
-			//Teacher teacher = new Teacher("Armen", "Hagopian", 10);
-			//Console.WriteLine("Salaire : " + teacher.Salary + ", " + teacher);
 
-			//Teacher LUR = new Teacher("Quentin", "Lurkin", 2500);
-			//Teacher LRG = new Teacher("Andre", "Lorge", 1000);
-			//Activity informatique = new Activity(5, "Informatique", "IN20", LUR);
-			//Activity math = new Activity(7, "Base de donnees", "DB20", LRG);
-			//Student A14040 = new Student("Armen", "Hagopian");
-			//A14040.Add(new Cote(informatique, 12));
-			//A14040.Add(new Appreciation(math, "N"));
-			//A14040.Add(new Evaluation(informatique));
-			//A14040.Add(new Appreciation(math, "X"));
-			//Console.WriteLine("Moyenne de {0} {1} : {2} ", A14040.Firstname, A14040.Lastname, A14040.Average());
-			//Console.WriteLine("Bulletin de {0} {1} : \n{2}", A14040.Firstname, A14040.Lastname, A14040.Bulletin());
+			Console.WriteLine("=== Bienvenue dans le meilleur logiciel de gestion d'Evaluations ===");
+			Console.WriteLine("1/ Liste des étudiants.");
+			Console.WriteLine("2/ Liste des enseignants.");
+			Console.WriteLine("3/ Liste des activités.");
+			Console.WriteLine("Veuillez entrer le numéro de la liste que vous souhaitez consulter");
 
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-			int counter = 0;
-			string line;
 			List<Student> studentslist = new List<Student>();
-
-			// Read the file line by line.
-			System.IO.StreamReader allStudents = new System.IO.StreamReader("Students.txt");
-			while ((line = allStudents.ReadLine()) != null)
-			{
-				string[] splitstudents = line.Split(new Char[] { ';' });
-				Student student = new Student(splitstudents[0], splitstudents[1]);
-				studentslist.Add(student);
-				counter++;
-			}
-
-
-//----------------------------------------------------------------------------------------------------------------------
 			List<Teacher> teacherslist = new List<Teacher>();
-			System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
-			while ((line = allTeachers.ReadLine()) != null)
-			{
-				string[] splitteachers = line.Split(new Char[] { ';' });
-				Teacher teacher = new Teacher(splitteachers[0], splitteachers[1], Convert.ToInt32(splitteachers[2]));
-				teacherslist.Add(teacher);
-			}
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
 			List<Activity> activitieslist = new List<Activity>();
-			System.IO.StreamReader allactivities = new System.IO.StreamReader("Activities.txt");
-			while ((line = allactivities.ReadLine()) != null)
+
+			string a = Console.ReadLine();
+			if (a == "1")
 			{
-				string[] splitactivities = line.Split(new Char[] { ';' });
-				foreach (Teacher element in teacherslist)
+				Console.WriteLine("\nVoici la liste des etudiants\n");
+				int counter = 0;
+				string line;
+				// Read the file line by line.
+				System.IO.StreamReader allStudents = new System.IO.StreamReader("Students.txt");
+				while ((line = allStudents.ReadLine()) != null)
 				{
-					if (element.Firstname == splitactivities[3] & element.Lastname == splitactivities[4])
-					{
-						Teacher teacherobject = new Teacher(element.Firstname, element.Lastname, 
-						                                    Convert.ToInt32(element.Salary));
-						Activity activity = new Activity(Convert.ToInt32(splitactivities[0]), splitactivities[1], 
-						                                 splitactivities[2], teacherobject);
-						activitieslist.Add(activity);
-					}
+					string[] splitstudents = line.Split(new Char[] { ';' });
+					Student student = new Student(splitstudents[0], splitstudents[1], Convert.ToInt32(splitstudents[2]));
+					studentslist.Add(student);
+					counter++;
+				}
+				foreach (Student eachstudent in studentslist)
+				{
+					Console.WriteLine(string.Format("{0}, Matricule : {1}", eachstudent.DisplayName(), eachstudent.Matricule));
 				}
 			}
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-			int countline = 0;
-			//permet d'enregistrer les lignes qui contiennent le nom et le prenom des eleves
-			List<int> nameslines = new List<int>();
-			List<Student> studentnames = new List<Student>();
-			System.IO.StreamReader evaluations = new System.IO.StreamReader("Evaluations.txt");
-			while ((line = evaluations.ReadLine()) != null)
+			else if (a == "2")
 			{
-				string[] splitstudents = line.Split(new Char[] { ';' });
-				Student student = new Student(splitstudents[0], splitstudents[1]);
-				for (int studentnumber = 0; studentnumber < studentslist.Count; studentnumber++)
+				Console.WriteLine("\nVoici la liste des enseignants\n");
+				string line;
+				System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
+				while ((line = allTeachers.ReadLine()) != null)
 				{
-					if (student.Firstname == studentslist[studentnumber].Firstname & 
-					    student.Lastname == studentslist[studentnumber].Lastname)
+					string[] splitteachers = line.Split(new Char[] { ';' });
+					Teacher teacher = new Teacher(splitteachers[0], splitteachers[1], Convert.ToInt32(splitteachers[2]), splitteachers[3]);
+					teacherslist.Add(teacher);
+				}
+				foreach (Teacher eachteacher in teacherslist)
+				{
+					Console.WriteLine(string.Format("{0}, Trigramme : {1}", eachteacher.DisplayName(), eachteacher.Trigram));
+				}
+			}
+			else if (a == "3")
+			{
+				Console.WriteLine("\nVoici la liste des activites\n");
+				string line;
+				System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
+				while ((line = allTeachers.ReadLine()) != null)
+				{
+					string[] splitteachers = line.Split(new Char[] { ';' });
+					Teacher teacher = new Teacher(splitteachers[0], splitteachers[1], Convert.ToInt32(splitteachers[2]), splitteachers[3]);
+					teacherslist.Add(teacher);
+				}
+
+				System.IO.StreamReader allactivities = new System.IO.StreamReader("Activities.txt");
+
+				while ((line = allactivities.ReadLine()) != null)
+				{
+					string[] splitactivities = line.Split(new Char[] { ';' });
+					foreach (Teacher element in teacherslist)
 					{
-						nameslines.Add(countline);
-						studentnames.Add(studentslist[studentnumber]);
+						if (element.Trigram == splitactivities[3])
+						{
+							Teacher teacherobject = new Teacher(element.Firstname, element.Lastname,
+							                                    Convert.ToInt32(element.Salary), element.Trigram);
+							Activity activity = new Activity(Convert.ToInt32(splitactivities[0]), splitactivities[1],
+															 splitactivities[2], teacherobject);
+							activitieslist.Add(activity);
+						}
 					}
 				}
-				countline++;
+				string activitydisplay = "Nom du cours" + "\tCode du cours" + "\tNbre ECTS" + "\tEnseignant\n";
+				foreach (Activity eachactivity in activitieslist)
+				{
+					//more or less tab depending on the length of the name of the activity 
+					if (eachactivity.Name.Length < 10)
+					{
+						activitydisplay += eachactivity.Name + "\t\t" + eachactivity.Code + "\t\t" + eachactivity.ECTS + "\t\t" + eachactivity.Teacher.Trigram + "\n";
+					}
+					else
+					{
+						activitydisplay += eachactivity.Name + "\t" + eachactivity.Code + "\t\t" + eachactivity.ECTS + "\t\t" + eachactivity.Teacher.Trigram + "\n";
+					}
+				}
+				Console.WriteLine(activitydisplay);
 			}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-			System.IO.StreamReader evaluations2 = new System.IO.StreamReader("Evaluations.txt");
-			List<Student> newstudentslist = new AddEvaluations().Return(evaluations2, nameslines, activitieslist, 
-			                                                            studentslist, studentnames);
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-			//Writes reports (Bulletins) of all students in same txt file
-			string text = "";
-			foreach (Student eachstudent in newstudentslist)
+			else
 			{
-				Console.WriteLine(eachstudent.Bulletin());
-				text += string.Format(eachstudent.Bulletin());
-			}
-
-			// WriteAllText creates a file, writes the specified string to the file and then closes the file.
-			System.IO.File.WriteAllText(@"Bulletins.txt", text);
-
-			//Writes report of each student in a differnet txt file
-			string text2 = "";
-			foreach (Student eachstudent in newstudentslist)
-			{
-				string filename = string.Format("Bulletin_de_{0}_{1}.txt", eachstudent.Firstname, eachstudent.Lastname);
-				text2 = string.Format(eachstudent.Bulletin());
-				System.IO.File.WriteAllText(filename, text2);
+				Console.WriteLine("Veuillez entrer l'un des numeros de liste existant");
 			}
 		}
 	}

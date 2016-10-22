@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Relations_classes_objets
+namespace EvaluationSystem
 {
 	public class Cote : Evaluation
 	{
