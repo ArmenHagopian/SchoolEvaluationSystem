@@ -25,17 +25,17 @@ namespace Relations_classes_objets
 			switch (this._appreciation)
 			{
 				case "X":
-				return 20;
+					return 20;
 				case "TB":
-				return 16;
+					return 16;
 				case "B":
-				return 12;
+					return 12;
 				case "C":
-				return 8;
+					return 8;
 				case "N":
-				return 4;
+					return 4;
 				default:
-				return 0;
+					return 0;
 			}
 		}
 

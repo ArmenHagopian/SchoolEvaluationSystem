@@ -9,11 +9,11 @@ namespace Relations_classes_objets
 			this._note = note;
 		}
 
-		public override int Note()			//methode
+		public override int Note()          //methode
 		{
 			return this._note;
 		}
-		public void setNote(int note)		//pour modifier une note existante
+		public void setNote(int note)       //pour modifier une note existante
 		{
 			this._note = note;
 		}

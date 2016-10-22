@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Relations_classes_objets
 {
 	public class Teacher : Person
 	{
 		private int _salary;
+		private List<Student> Students = new List<Student>();
 		public Teacher(string Firstname, string Lastname, int Salary) : base(Firstname, Lastname)
 		{
 			this._salary = Salary;
+		}
+
+		public void AddStudent(Student student)
+		{
+			Students.Add(student);
 		}
 
 		public string Salary

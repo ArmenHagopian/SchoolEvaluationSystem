@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Relations_classes_objets
 {
-	public class Person		//est prive si met pas public class
+	public class Person     //est prive si met pas public class
 	{
 		private string _firstname;
 		private string _lastname;
@@ -12,13 +12,13 @@ namespace Relations_classes_objets
 
 		}
 
-		public string Firstname		//public donc on peut y acceder en faisant student.Firstname
+		public string Firstname     //public donc on peut y acceder en faisant student.Firstname
 		{
-			get { return this._firstname;}
+			get { return this._firstname; }
 		}
 		public string Lastname
 		{
-			get { return this._lastname;}
+			get { return this._lastname; }
 		}
 
 		public string DisplayName()
@@ -26,7 +26,7 @@ namespace Relations_classes_objets
 			return "Firstname : " + Firstname + ", Lastname : " + Lastname;
 		}
 
-		public override string ToString()		//permet d'appeler directement DisplayName quand cree nouvel objet student par exemple : Person student = new Person("Armen", "Hagopian"); Console.WriteLine(student);
+		public override string ToString()       //permet d'appeler directement DisplayName quand cree nouvel objet student par exemple : Person student = new Person("Armen", "Hagopian"); Console.WriteLine(student);
 		{
 			return this.DisplayName();
 		}

@@ -20,13 +20,13 @@ namespace Relations_classes_objets
 		//Appreciation.Note() en fonction de si la note a ete donnee avec la classe Cote ou Appreciation
 		public abstract int Note();
 
-			//return this._note;
-			//Cote(this._activity, 3);
-	
-			//if (Appreciation.Note)
-			//{
-			//	return "n";
-			//}
-		
+		//return this._note;
+		//Cote(this._activity, 3);
+
+		//if (Appreciation.Note)
+		//{
+		//	return "n";
+		//}
+
 	}
 }
