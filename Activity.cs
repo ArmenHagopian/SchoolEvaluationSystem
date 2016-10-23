@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace EvaluationSystem
+
 {
 	public class Activity
 	{
@@ -7,14 +9,14 @@ namespace EvaluationSystem
 		private string _name;
 		private string _code;
 		private Teacher _teacher;
-		private Book _book;
-		public Activity(int ECTS, string name, string code, Teacher teacher, Book book)
+		private List<Book> Books = new List<Book>();
+
+		public Activity(int ECTS, string name, string code, Teacher teacher)
 		{
 			this._ECTS = ECTS;
 			this._name = name;
 			this._code = code;
 			this._teacher = teacher;
-			this._book = book;
 		}
 		public int ECTS
 		{
@@ -33,10 +35,24 @@ namespace EvaluationSystem
 		{
 			get { return this._teacher; }
 		}
-		//Attention cette fonction retourne une liste de livre avec différent nom de cours
-		public Book Book
-		{ 
-			get { return this._book; }
+
+		public void AddBook(Book book)
+		{
+			Books.Add(book);
+		}
+
+		public string DisplayBook()
+		{
+			string display = string.Format("Le(s) livre(s) de {0} est/sont :\n", this._name);
+			foreach (Book book in Books)
+			{
+				display += book + "\n";
+			}
+			if (Books.Count == 0)
+			{
+				display = "Pas de livre encodé";
+			}
+			return display;
 		}
 	}
 }

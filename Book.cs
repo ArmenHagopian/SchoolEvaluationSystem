@@ -5,16 +5,22 @@ namespace EvaluationSystem
 {
 	public class Book
 	{
-		private List<string> Livre = new List<string>();
-		private string _nomLivre;
-		public Book(string nomLivre)
+		private string _bookname;
+		private int _bookprice;
+		public Book(string Bookname, int Bookprice)
 		{
-			this._nomLivre = nomLivre;
-		}
-		public void add() 
-		{
-			Livre.Add(this._nomLivre);
+			this._bookname = Bookname;
+			this._bookprice = Bookprice;
 		}
 
+		public string Name
+		{
+			get { return this._bookname; }
+		}
+
+		public int Price
+		{
+			get { return this._bookprice; }
+		}
 	}
 }
