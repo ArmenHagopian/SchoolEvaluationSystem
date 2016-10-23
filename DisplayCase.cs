@@ -30,6 +30,7 @@ namespace EvaluationSystem
 					_studentchosen = true;
 					_teacherchosen = false;
 					_activitychosen = false;
+
 					string studentdisplay = "\nVoici la liste des etudiants\n";
 					string line;
 					if (this._studentslist.Count == 0)
@@ -74,7 +75,8 @@ namespace EvaluationSystem
 							counter++;
 						}
 					
-					return teacherdisplay + "\nChoisir un enseignant en donnant son trigramme ou taper B pour revenir au menu principal.";
+					return teacherdisplay + "\nChoisir un enseignant en donnant son trigramme pour afficher son salaire " +
+					"et tous ces eleves ou taper B pour revenir au menu principal.";
 					
 				case "3":
 					
@@ -83,17 +85,6 @@ namespace EvaluationSystem
 					_activitychosen = true;
 
 					string activitydisplay = "\nVoici la liste des activites\n";
-
-					if (this._teacherslist.Count == 0)
-					{
-						System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
-						while ((line = allTeachers.ReadLine()) != null)
-						{
-							string[] splitteachers = line.Split(new Char[] { ';' });
-							Teacher teacher = new Teacher(splitteachers[0], splitteachers[1], Convert.ToInt32(splitteachers[2]), splitteachers[3]);
-							this._teacherslist.Add(teacher);
-						}
-					}
 
 					if (this._activitieslist.Count == 0)
 					{
@@ -116,7 +107,8 @@ namespace EvaluationSystem
 						}
 					}
 
-					return activitydisplay + "\nChoisir une activite en donnant son code ou taper B pour revenir au menu principal.";
+					return activitydisplay + "\nChoisir une activite en donnant son code pour afficher le(s) livre(s) " +
+					"associes et les eleves qui y sont inscrits ou taper B pour revenir au menu principal.";
 
 				default:
 
@@ -125,17 +117,19 @@ namespace EvaluationSystem
 			}
 		}
 
+		//return info about the list chosen by the user
 		public string ChosenList(string input)
 		{
-			string display = "";
+			string displaystudent = "";
 			if (_studentchosen == true)
 			{
+				//default value to display if user doesn't give an existing 'matricule'
+				displaystudent = "Veuillez entrer l'un des matricules existants\n";
 				foreach (Student student in _studentslist)
 				{
-					Console.WriteLine("test1");
 					if (student.Matricule.ToString() == input)
 					{
-						Console.WriteLine("test2");
+
 						string line;
 						System.IO.StreamReader evaluations = new System.IO.StreamReader("Evaluations.txt");
 						while ((line = evaluations.ReadLine()) != null)
@@ -143,10 +137,16 @@ namespace EvaluationSystem
 							string[] evaluation = line.Split(new Char[] { ';' });
 							if (evaluation[2] == student.Matricule.ToString())
 							{
-								Console.WriteLine("test3");
-								foreach (Activity eachactivity in _activitieslist)
+
+								if (this._activitieslist.Count == 0)
 								{
-									Console.WriteLine("test4 " + eachactivity);
+									ReturnActivities result = new ReturnActivities(this._teacherslist);
+									this._activitieslist = result.List();
+								}
+
+
+								foreach (Activity eachactivity in this._activitieslist)
+								{
 									if (eachactivity.Code == evaluation[0])
 									{
 										int value;
@@ -166,20 +166,21 @@ namespace EvaluationSystem
 								}
 							}
 						}
-						display += student.Bulletin();
+						displaystudent = student.Bulletin();
 					}
 				}
-				return display;
+				return displaystudent;
 			}
 			else if (_teacherchosen == true)
 			{
-
+				string displayteacher = new ReturnTeachersinfo(this._teacherslist, this._studentslist, input).ToString();
+				return displayteacher;
 			}
 			else if (_activitychosen == true)
 			{
 				
 			}
-			return "Probleme";
+			return "ok";
 		}
 	}
 }

@@ -23,7 +23,7 @@ namespace EvaluationSystem
 			string display = string.Format("Ci-desssous sont repris tous les eleves de {0} {1} :\n", Firstname, Lastname);
 			foreach (Student student in Students)
 			{
-				display += student + "\n";
+				display += student + ", Matricule : " + student.Matricule + "\n";
 			}
 			return display;
 		}
