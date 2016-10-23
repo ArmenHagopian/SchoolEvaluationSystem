@@ -71,7 +71,7 @@ namespace EvaluationSystem
 					
 				case "3":
 
-					Console.WriteLine("\nVoici la liste des activites\n");
+					string activitydisplay = "\nVoici la liste des activites\n";
 					if (this._teacherslist.Count == 0)
 					{
 						System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
@@ -103,7 +103,7 @@ namespace EvaluationSystem
 							}
 						}
 					}
-					string activitydisplay = "Nom du cours" + "\tCode du cours" + "\tNbre ECTS" + "\tEnseignant\n";
+					activitydisplay += "Nom du cours" + "\tCode du cours" + "\tNbre ECTS" + "\tEnseignant\n";
 					foreach (Activity eachactivity in this._activitieslist)
 					{
 						//more or less tab depending on the length of the name of the activity 
@@ -121,7 +121,7 @@ namespace EvaluationSystem
 
 				default:
 
-					return "Veuillez entrer l'un des numeros de liste existant";
+					return "Veuillez entrer l'un des numeros de liste existants";
 				
 			}
 		}
