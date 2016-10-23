@@ -9,6 +9,9 @@ namespace EvaluationSystem
 		List<Student> _studentslist;
 		List<Teacher> _teacherslist;
 		List<Activity> _activitieslist;
+		private bool _studentchosen = false;
+		private bool _teacherchosen = false;
+		private bool _activitychosen = false;
 		public DisplayCase(string input, List<Student> studentslist, List<Teacher> teacherslist, List<Activity> activitieslist)
 		{
 			this._input = input;
@@ -24,7 +27,9 @@ namespace EvaluationSystem
 				//case "qui":
 				//	return "stop";
 				case "1":
-
+					_studentchosen = true;
+					_teacherchosen = false;
+					_activitychosen = false;
 					string studentdisplay = "\nVoici la liste des etudiants\n";
 					string line;
 					if (this._studentslist.Count == 0)
@@ -45,10 +50,12 @@ namespace EvaluationSystem
 						counter++;
 					}
 					
-					return studentdisplay + "\nChoisir un etudiant en donnant le numero de son matricule ou taper B pour revenir au menu principal.";
+					return studentdisplay + "\nChoisir un etudiant pour afficher son bulletin en donnant le numero de son matricule ou taper B pour revenir au menu principal.";
 
 				case "2":
-
+					_studentchosen = false;
+					_teacherchosen = true;
+					_activitychosen = false;
 					string teacherdisplay = "\nVoici la liste des enseignants\n";
 					if (this._teacherslist.Count == 0)
 					{
@@ -70,8 +77,13 @@ namespace EvaluationSystem
 					return teacherdisplay + "\nChoisir un enseignant en donnant son trigramme ou taper B pour revenir au menu principal.";
 					
 				case "3":
+					
+					_studentchosen = false;
+					_teacherchosen = false;
+					_activitychosen = true;
 
 					string activitydisplay = "\nVoici la liste des activites\n";
+
 					if (this._teacherslist.Count == 0)
 					{
 						System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
@@ -85,25 +97,12 @@ namespace EvaluationSystem
 
 					if (this._activitieslist.Count == 0)
 					{
-						System.IO.StreamReader allactivities = new System.IO.StreamReader("Activities.txt");
-
-						while ((line = allactivities.ReadLine()) != null)
-						{
-							string[] splitactivities = line.Split(new Char[] { ';' });
-							foreach (Teacher element in this._teacherslist)
-							{
-								if (element.Trigram == splitactivities[3])
-								{
-									Teacher teacherobject = new Teacher(element.Firstname, element.Lastname,
-																		Convert.ToInt32(element.Salary), element.Trigram);
-									Activity activity = new Activity(Convert.ToInt32(splitactivities[0]), splitactivities[1],
-																	 splitactivities[2], teacherobject);
-									this._activitieslist.Add(activity);
-								}
-							}
-						}
+						ReturnActivities result = new ReturnActivities(this._teacherslist);
+						this._activitieslist = result.List();
 					}
+
 					activitydisplay += "Nom du cours" + "\tCode du cours" + "\tNbre ECTS" + "\tEnseignant\n";
+
 					foreach (Activity eachactivity in this._activitieslist)
 					{
 						//more or less tab depending on the length of the name of the activity 
@@ -124,6 +123,63 @@ namespace EvaluationSystem
 					return "Veuillez entrer l'un des numeros de liste existants";
 				
 			}
+		}
+
+		public string ChosenList(string input)
+		{
+			string display = "";
+			if (_studentchosen == true)
+			{
+				foreach (Student student in _studentslist)
+				{
+					Console.WriteLine("test1");
+					if (student.Matricule.ToString() == input)
+					{
+						Console.WriteLine("test2");
+						string line;
+						System.IO.StreamReader evaluations = new System.IO.StreamReader("Evaluations.txt");
+						while ((line = evaluations.ReadLine()) != null)
+						{
+							string[] evaluation = line.Split(new Char[] { ';' });
+							if (evaluation[2] == student.Matricule.ToString())
+							{
+								Console.WriteLine("test3");
+								foreach (Activity eachactivity in _activitieslist)
+								{
+									Console.WriteLine("test4 " + eachactivity);
+									if (eachactivity.Code == evaluation[0])
+									{
+										int value;
+										if (int.TryParse(evaluation[1], out value))
+										{
+											Cote cotestudent = new Cote(eachactivity,
+																		Convert.ToInt32(evaluation[1]));
+											student.Add(cotestudent);
+										}
+										else
+										{
+											Appreciation studentappreciation = new Appreciation(eachactivity,
+																								evaluation[1]);
+											student.Add(studentappreciation);
+										}
+									}
+								}
+							}
+						}
+						display += student.Bulletin();
+					}
+				}
+				return display;
+			}
+			else if (_teacherchosen == true)
+			{
+
+			}
+			else if (_activitychosen == true)
+			{
+				
+			}
+			return "Probleme";
 		}
 	}
 }

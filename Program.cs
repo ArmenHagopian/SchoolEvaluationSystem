@@ -73,6 +73,7 @@ namespace EvaluationSystem
 						}
 					}
 				}
+				Console.WriteLine(display.ChosenList(input));
 			}
 			Console.WriteLine("\nBye");
 		}
