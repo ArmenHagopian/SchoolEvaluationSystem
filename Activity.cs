@@ -7,12 +7,14 @@ namespace EvaluationSystem
 		private string _name;
 		private string _code;
 		private Teacher _teacher;
-		public Activity(int ECTS, string name, string code, Teacher teacher)
+		private Book _book;
+		public Activity(int ECTS, string name, string code, Teacher teacher, Book book)
 		{
 			this._ECTS = ECTS;
 			this._name = name;
 			this._code = code;
 			this._teacher = teacher;
+			this._book = book;
 		}
 		public int ECTS
 		{
@@ -30,6 +32,11 @@ namespace EvaluationSystem
 		public Teacher Teacher
 		{
 			get { return this._teacher; }
+		}
+		//Attention cette fonction retourne une liste de livre avec différent nom de cours
+		public Book Book
+		{ 
+			get { return this._book; }
 		}
 	}
 }
