@@ -25,23 +25,39 @@ namespace EvaluationSystem
 				}
 			}
 			System.IO.StreamReader allactivities = new System.IO.StreamReader("Activities.txt");
-
-			while ((line = allactivities.ReadLine()) != null)
+			System.IO.StreamReader allbooks = new System.IO.StreamReader("Books.txt");
+			if (activitieslist.Count == 0)
 			{
-				string[] splitactivities = line.Split(new Char[] { ';' });
-				foreach (Teacher element in this._teacherslist)
+				while ((line = allactivities.ReadLine()) != null)
 				{
-					if (element.Trigram == splitactivities[3])
+					string[] splitactivities = line.Split(new Char[] { ';' });
+					foreach (Teacher element in this._teacherslist)
 					{
-						Teacher teacherobject = new Teacher(element.Firstname, element.Lastname,
-															Convert.ToInt32(element.Salary), element.Trigram);
-						Activity activity = new Activity(Convert.ToInt32(splitactivities[0]), splitactivities[1],
-														 splitactivities[2], teacherobject);
-						activitieslist.Add(activity);
+						if (element.Trigram == splitactivities[3])
+						{
+							Teacher teacherobject = new Teacher(element.Firstname, element.Lastname,
+																Convert.ToInt32(element.Salary), element.Trigram);
+							Activity activity = new Activity(Convert.ToInt32(splitactivities[0]), splitactivities[1],
+															 splitactivities[2], teacherobject);
+							activitieslist.Add(activity);
+						}
+					}
+				}
+
+
+				while ((line = allbooks.ReadLine()) != null)
+				{
+					foreach (Activity eachactivity in activitieslist)
+					{
+						string[] splitbooks = line.Split(new Char[] { ';' });
+						if (splitbooks[2] == eachactivity.Code)
+						{
+							Book book = new Book(splitbooks[0], Convert.ToInt32(splitbooks[1]));
+							eachactivity.AddBook(book);
+						}
 					}
 				}
 			}
-
 			return activitieslist;
 		}
 	}

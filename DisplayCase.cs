@@ -108,7 +108,7 @@ namespace EvaluationSystem
 					}
 
 					return activitydisplay + "\nChoisir une activite en donnant son code pour afficher le(s) livre(s) " +
-					"associes et les eleves qui y sont inscrits ou taper B pour revenir au menu principal.";
+					"associe(s) et les eleves qui y sont inscrits ou taper B pour revenir au menu principal.";
 
 				default:
 
@@ -171,15 +171,31 @@ namespace EvaluationSystem
 				}
 				return displaystudent;
 			}
+
+
 			else if (_teacherchosen == true)
 			{
 				string displayteacher = new ReturnTeachersinfo(this._teacherslist, this._studentslist, input).ToString();
 				return displayteacher;
 			}
+
+
 			else if (_activitychosen == true)
 			{
-				
+				string displayactivities = "";
+		
+				ReturnActivities activities = new ReturnActivities(this._teacherslist);
+				foreach (Activity eachactivity in activities.List())
+				{
+					if (eachactivity.Code == input)
+					{
+						displayactivities += eachactivity.DisplayBook();
+					}
+				}
+
+				return displayactivities;
 			}
+
 			return "ok";
 		}
 	}

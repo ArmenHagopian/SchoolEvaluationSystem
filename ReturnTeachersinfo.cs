@@ -20,6 +20,8 @@ namespace EvaluationSystem
 			string display = "";
 
 			string line;
+
+
 			if (this._studentslist.Count == 0)
 			{
 				System.IO.StreamReader allStudents = new System.IO.StreamReader("Students.txt");
@@ -30,8 +32,10 @@ namespace EvaluationSystem
 					this._studentslist.Add(student);
 				}
 			}
-			if (this._teacherslist.Count == 0)
-			{
+
+
+			//if (this._teacherslist.Count == 0)
+			//{
 				System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
 				while ((line = allTeachers.ReadLine()) != null)
 				{
@@ -49,27 +53,29 @@ namespace EvaluationSystem
 					}
 					this._teacherslist.Add(teacher);
 				}
-			}
-			else 
-			{ 
-				System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
-				while ((line = allTeachers.ReadLine()) != null)
-				{
-					string[] splitteachers = line.Split(new Char[] { ';' });
-					Teacher teacher = new Teacher(splitteachers[0], splitteachers[1], Convert.ToInt32(splitteachers[2]), splitteachers[3]);
-					for (int i = 4; i < splitteachers.Length; i++)
-					{
-						foreach (Student student in this._studentslist)
-						{
-							if (student.Matricule.ToString() == splitteachers[i])
-							{
-								teacher.AddStudent(student);
-							}
-						}
-					}
-					this._teacherslist.Add(teacher);
-				}
-			}
+			//}
+
+
+			//else 
+			//{ 
+			//	System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
+			//	while ((line = allTeachers.ReadLine()) != null)
+			//	{
+			//		string[] splitteachers = line.Split(new Char[] { ';' });
+			//		Teacher teacher = new Teacher(splitteachers[0], splitteachers[1], Convert.ToInt32(splitteachers[2]), splitteachers[3]);
+			//		for (int i = 4; i < splitteachers.Length; i++)
+			//		{
+			//			foreach (Student student in this._studentslist)
+			//			{
+			//				if (student.Matricule.ToString() == splitteachers[i])
+			//				{
+			//					teacher.AddStudent(student);
+			//				}
+			//			}
+			//		}
+			//		this._teacherslist.Add(teacher);
+			//	}
+			//}
 
 			string salary = "";
 			foreach (Teacher teacher in this._teacherslist)

@@ -43,6 +43,11 @@ namespace EvaluationSystem
 				{
 					input = Console.ReadLine();
 				}
+				if (input != "B")
+				{
+					Console.WriteLine(display.ChosenList(input));
+					input = Console.ReadLine();
+				}
 				while (input== "B" & input !="quit")
 				{
 					Console.WriteLine("=== Bienvenue dans le meilleur logiciel de gestion d'Evaluations ===");
@@ -71,9 +76,14 @@ namespace EvaluationSystem
 						{
 							input = Console.ReadLine();
 						}
+
+					}
+					if (input != "B")
+					{
+						Console.WriteLine(display.ChosenList(input));
+						input = Console.ReadLine();
 					}
 				}
-				Console.WriteLine(display.ChosenList(input));
 			}
 			Console.WriteLine("\nBye");
 		}

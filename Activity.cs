@@ -43,10 +43,15 @@ namespace EvaluationSystem
 
 		public string DisplayBook()
 		{
-			string display = string.Format("Le(s) livre(s) de {0} est/sont :\n", this._name);
+			string display = string.Format("Les livres de {0} sont :\n", this._name);
+
+			if (Books.Count == 1)
+			{
+				display = string.Format("Le livre de {0} est :\n", this._name);
+			}
 			foreach (Book book in Books)
 			{
-				display += book + "\n";
+				display += book.Name + " (" + book.Price + " euros)" + "\n";
 			}
 			if (Books.Count == 0)
 			{
