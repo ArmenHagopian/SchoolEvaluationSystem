@@ -22,6 +22,7 @@ namespace EvaluationSystem
 			string input = "";
 
 			input = Console.ReadLine();
+
 			//We check several times if the user types the word 'quit' to end the program 
 			if (input != "quit")
 			{
@@ -46,9 +47,24 @@ namespace EvaluationSystem
 				if (input != "B")
 				{
 					Console.WriteLine(display.ChosenList(input));
+					while(display.ChosenList(input) == "Veuillez entrer l'un des matricules existants\n" || 
+					      display.ChosenList(input) == "Veuillez entrer un trigramme existant\n" || 
+					      display.ChosenList(input) == "Veuillez entrer l'un des codes d'activites existants\n")
+					{
+						input = Console.ReadLine();
+						if (input != "quit")
+						{
+							Console.WriteLine(display.ChosenList(input));
+						}
+					}
+					Console.WriteLine("Tapez B pour revenir au menu principal ou tapez quit pour quitter le programme");
 					input = Console.ReadLine();
 				}
-				while (input== "B" & input !="quit")
+
+			
+
+	
+				while (input == "B" & input !="quit")
 				{
 					Console.WriteLine("=== Bienvenue dans le meilleur logiciel de gestion d'Evaluations ===");
 					Console.WriteLine("1/ Liste des étudiants.");
@@ -81,8 +97,21 @@ namespace EvaluationSystem
 					if (input != "B")
 					{
 						Console.WriteLine(display.ChosenList(input));
+						while(display.ChosenList(input) == "Veuillez entrer l'un des matricules existants\n" ||
+							display.ChosenList(input) == "Veuillez entrer un trigramme existant\n" ||
+							display.ChosenList(input) == "Veuillez entrer l'un des codes d'activites existants\n")
+						{
+							input = Console.ReadLine();
+							if (input != "quit")
+							{
+								Console.WriteLine(display.ChosenList(input));
+							}
+						}
+						Console.WriteLine("Tapez B pour revenir au menu principal ou tapez quit pour quitter le programme");
 						input = Console.ReadLine();
+
 					}
+		
 				}
 			}
 			Console.WriteLine("\nBye");

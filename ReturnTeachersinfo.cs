@@ -34,26 +34,29 @@ namespace EvaluationSystem
 			}
 
 
-			//if (this._teacherslist.Count == 0)
-			//{
+			if (this._teacherslist.Count == 0 || this._teacherslist[0].has_students == false)
+			{
 				System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
 				while ((line = allTeachers.ReadLine()) != null)
 				{
 					string[] splitteachers = line.Split(new Char[] { ';' });
 					Teacher teacher = new Teacher(splitteachers[0], splitteachers[1], Convert.ToInt32(splitteachers[2]), splitteachers[3]);
-					for (int i = 4; i < splitteachers.Length; i++)
+					if (teacher.has_students == false)
 					{
-						foreach (Student student in this._studentslist)
+						for (int i = 4; i < splitteachers.Length; i++)
 						{
-							if (student.Matricule.ToString() == splitteachers[i])
+							foreach (Student student in this._studentslist)
 							{
-								teacher.AddStudent(student);
+								if (student.Matricule.ToString() == splitteachers[i])
+								{
+									teacher.AddStudent(student);
+								}
 							}
 						}
 					}
 					this._teacherslist.Add(teacher);
 				}
-			//}
+			}
 
 
 			//else 
@@ -88,7 +91,10 @@ namespace EvaluationSystem
 				}
 			}
 			display += "\n\nEt son salaire : " + salary +  " euros";
-
+			if (display == "\n\nEt son salaire : " + salary + " euros")
+			{
+				return "";
+			}
 			return display;
 
 		}

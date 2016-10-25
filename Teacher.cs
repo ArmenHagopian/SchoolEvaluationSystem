@@ -8,15 +8,18 @@ namespace EvaluationSystem
 		private int _salary;
 		private string _trigram;
 		private List<Student> Students = new List<Student>();
+		public bool has_students = false;
 		public Teacher(string Firstname, string Lastname, int Salary, string Trigram) : base(Firstname, Lastname)
 		{
 			this._salary = Salary;
 			this._trigram = Trigram;
+			this.has_students = false;
 		}
 
 		public void AddStudent(Student student)
 		{
 			Students.Add(student);
+			this.has_students = true;
 		}
 		public string DisplayStudents()
 		{

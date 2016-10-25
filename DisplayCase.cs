@@ -58,6 +58,7 @@ namespace EvaluationSystem
 					_teacherchosen = true;
 					_activitychosen = false;
 					string teacherdisplay = "\nVoici la liste des enseignants\n";
+					this._teacherslist = new List<Teacher>();
 					if (this._teacherslist.Count == 0)
 					{
 						System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
@@ -68,12 +69,13 @@ namespace EvaluationSystem
 							this._teacherslist.Add(teacher);
 						}
 					}
-						counter = 1;
-						foreach (Teacher eachteacher in this._teacherslist)
-						{
-							teacherdisplay += string.Format("{0}/ {1}, Trigramme : {2}\n", counter, eachteacher.DisplayName(), eachteacher.Trigram);
-							counter++;
-						}
+
+					counter = 1;
+					foreach (Teacher eachteacher in this._teacherslist)
+					{
+						teacherdisplay += string.Format("{0}/ {1}, Trigramme : {2}\n", counter, eachteacher.DisplayName(), eachteacher.Trigram);
+						counter++;
+					}
 					
 					return teacherdisplay + "\nChoisir un enseignant en donnant son trigramme pour afficher son salaire " +
 					"et tous ces eleves ou taper B pour revenir au menu principal.";
@@ -120,63 +122,31 @@ namespace EvaluationSystem
 		//return info about the list chosen by the user
 		public string ChosenList(string input)
 		{
-			string displaystudent = "";
+			
+
 			if (_studentchosen == true)
 			{
 				//default value to display if user doesn't give an existing 'matricule'
-				displaystudent = "Veuillez entrer l'un des matricules existants\n";
-				foreach (Student student in _studentslist)
+				string displaystudent = "";
+				ReturnStudentsInfo studentsinfo = new ReturnStudentsInfo(this._studentslist, this._teacherslist, this._activitieslist, input);
+				displaystudent = studentsinfo.ToString();
+				if (displaystudent != "")
 				{
-					if (student.Matricule.ToString() == input)
-					{
-
-						string line;
-						System.IO.StreamReader evaluations = new System.IO.StreamReader("Evaluations.txt");
-						while ((line = evaluations.ReadLine()) != null)
-						{
-							string[] evaluation = line.Split(new Char[] { ';' });
-							if (evaluation[2] == student.Matricule.ToString())
-							{
-
-								if (this._activitieslist.Count == 0)
-								{
-									ReturnActivities result = new ReturnActivities(this._teacherslist);
-									this._activitieslist = result.List();
-								}
-
-
-								foreach (Activity eachactivity in this._activitieslist)
-								{
-									if (eachactivity.Code == evaluation[0])
-									{
-										int value;
-										if (int.TryParse(evaluation[1], out value))
-										{
-											Cote cotestudent = new Cote(eachactivity,
-																		Convert.ToInt32(evaluation[1]));
-											student.Add(cotestudent);
-										}
-										else
-										{
-											Appreciation studentappreciation = new Appreciation(eachactivity,
-																								evaluation[1]);
-											student.Add(studentappreciation);
-										}
-									}
-								}
-							}
-						}
-						displaystudent = student.Bulletin();
-					}
+					return displaystudent;
 				}
-				return displaystudent;
+				return "Veuillez entrer l'un des matricules existants\n";
 			}
 
 
 			else if (_teacherchosen == true)
 			{
-				string displayteacher = new ReturnTeachersinfo(this._teacherslist, this._studentslist, input).ToString();
-				return displayteacher;
+				string displayteacher = "";
+				displayteacher = new ReturnTeachersinfo(this._teacherslist, this._studentslist, input).ToString();
+				if (displayteacher != "")
+				{
+					return displayteacher;
+				}
+				return "Veuillez entrer un trigramme existant\n";
 			}
 
 
@@ -192,11 +162,13 @@ namespace EvaluationSystem
 						displayactivities += eachactivity.DisplayBook();
 					}
 				}
-
-				return displayactivities;
+				if (displayactivities != "")
+				{
+					return displayactivities;
+				}
+				return "Veuillez entrer l'un des codes d'activites existants\n";
 			}
-
-			return "ok";
+			return "Error";
 		}
 	}
 }

@@ -9,16 +9,19 @@ namespace EvaluationSystem
 		private string _firstname;
 		private string _lastname;
 		private int _matricule;
+		public bool is_evaluated = false;
 		public Student(string Firstname, string Lastname, int Matricule) : base(Firstname, Lastname)
 		{
 			this._firstname = Firstname;
 			this._lastname = Lastname;
 			this._matricule = Matricule;
+			this.is_evaluated = false;
 		}
 
-		public void Add(Evaluation evaluation)          //evaluation doit etre du type Evaluation
+		public void Add(Evaluation evaluation)
 		{
 			Cours.Add(evaluation);
+			is_evaluated = true;
 		}
 		public int Matricule
 		{
