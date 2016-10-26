@@ -24,9 +24,7 @@ namespace EvaluationSystem
 		{
 			switch (this._input)
 			{
-				//case "qui":
-				//	return "stop";
-				//Displays the student list
+				//Displays the students list
 				case "1":
 					_studentchosen = true;
 					_teacherchosen = false;
@@ -45,7 +43,7 @@ namespace EvaluationSystem
 							this._studentslist.Add(student);
 						}
 					}
-					//Displays a number in front of the 3 possible choices, starting at 1
+					//Displays a number in front of the possible choices, starting at 1
 					int counter = 1;
 					foreach (Student eachstudent in this._studentslist)
 					{
