@@ -54,7 +54,8 @@ namespace EvaluationSystem
 					}
 					
 					return studentdisplay + "\nChoisir un etudiant pour afficher son bulletin en donnant le numero de son matricule ou taper B pour revenir au menu principal.";
-				//Displays the teacher list
+				
+					//Displays the list of teachers
 				case "2":
 					_studentchosen = false;
 					_teacherchosen = true;
@@ -123,7 +124,8 @@ namespace EvaluationSystem
 
 		//Return info about the list chosen by the user
 		public string ChosenList(string input)
-		{
+		{   
+			//Error message displayed when the user doesn't give an existing 'matricule'
 			if (_studentchosen == true)
 			{
 				//Default value to display if user doesn't give an existing 'matricule'
@@ -136,8 +138,7 @@ namespace EvaluationSystem
 				}
 				return "Veuillez entrer l'un des matricules existants\n";
 			}
-
-
+			//Error message displayed when the user doesn't give an existing trigram
 			else if (_teacherchosen == true)
 			{
 				string displayteacher = "";
@@ -148,13 +149,13 @@ namespace EvaluationSystem
 				}
 				return "Veuillez entrer un trigramme existant\n";
 			}
-
-
+			//Error message displayed when the user doesn't give an existing codes
 			else if (_activitychosen == true)
 			{
 				string displayactivities = "";
 		
 				ReturnActivities activities = new ReturnActivities(this._teacherslist);
+				//This loop analyses the list of activities for a match between the input and one of the activity
 				foreach (Activity eachactivity in activities.List())
 				{
 					if (eachactivity.Code == input)
