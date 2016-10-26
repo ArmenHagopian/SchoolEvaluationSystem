@@ -19,13 +19,14 @@ namespace EvaluationSystem
 			this._teacherslist = teacherslist;
 			this._activitieslist = activitieslist;
 		}
-
+		//Displays the second menu for all the possibilities 
 		public override string ToString()
 		{
 			switch (this._input)
 			{
 				//case "qui":
 				//	return "stop";
+				//Displays the student list
 				case "1":
 					_studentchosen = true;
 					_teacherchosen = false;
@@ -44,6 +45,7 @@ namespace EvaluationSystem
 							this._studentslist.Add(student);
 						}
 					}
+					//Displays a number in front of the 3 possible choices, starting at 1
 					int counter = 1;
 					foreach (Student eachstudent in this._studentslist)
 					{
@@ -52,7 +54,7 @@ namespace EvaluationSystem
 					}
 					
 					return studentdisplay + "\nChoisir un etudiant pour afficher son bulletin en donnant le numero de son matricule ou taper B pour revenir au menu principal.";
-
+				//Displays the teacher list
 				case "2":
 					_studentchosen = false;
 					_teacherchosen = true;
@@ -79,7 +81,7 @@ namespace EvaluationSystem
 					
 					return teacherdisplay + "\nChoisir un enseignant en donnant son trigramme pour afficher son salaire " +
 					"et tous ces eleves ou taper B pour revenir au menu principal.";
-					
+				//Displays the activities
 				case "3":
 					
 					_studentchosen = false;
@@ -98,7 +100,7 @@ namespace EvaluationSystem
 
 					foreach (Activity eachactivity in this._activitieslist)
 					{
-						//more or less tab depending on the length of the name of the activity 
+						//More or less tab depending on the length of the name of the activity 
 						if (eachactivity.Name.Length < 10)
 						{
 							activitydisplay += eachactivity.Name + "\t\t" + eachactivity.Code + "\t\t" + eachactivity.ECTS + "\t\t" + eachactivity.Teacher.Trigram + "\n";
@@ -119,14 +121,12 @@ namespace EvaluationSystem
 			}
 		}
 
-		//return info about the list chosen by the user
+		//Return info about the list chosen by the user
 		public string ChosenList(string input)
 		{
-			
-
 			if (_studentchosen == true)
 			{
-				//default value to display if user doesn't give an existing 'matricule'
+				//Default value to display if user doesn't give an existing 'matricule'
 				string displaystudent = "";
 				ReturnStudentsInfo studentsinfo = new ReturnStudentsInfo(this._studentslist, this._teacherslist, this._activitieslist, input);
 				displaystudent = studentsinfo.ToString();
