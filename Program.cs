@@ -64,64 +64,63 @@ namespace EvaluationSystem
 
 			input = "B";
 	
-				while (input == "B" & input !="quit")
+			while (input == "B" & input !="quit")
+			{
+				Console.WriteLine("=== Bienvenue dans le meilleur logiciel de gestion d'Evaluations ===");
+				Console.WriteLine("1/ Liste des étudiants.");
+				Console.WriteLine("2/ Liste des enseignants.");
+				Console.WriteLine("3/ Liste des activités.");
+				Console.WriteLine("Veuillez entrer le numéro de la liste que vous souhaitez consulter");
+				Console.WriteLine("\nP.S. : Vous pouvez taper quit a n'importe quel moment pour quitter le logiciel\n");
+
+				input = Console.ReadLine();
+				if (input != "quit")
 				{
-					Console.WriteLine("=== Bienvenue dans le meilleur logiciel de gestion d'Evaluations ===");
-					Console.WriteLine("1/ Liste des étudiants.");
-					Console.WriteLine("2/ Liste des enseignants.");
-					Console.WriteLine("3/ Liste des activités.");
-					Console.WriteLine("Veuillez entrer le numéro de la liste que vous souhaitez consulter");
-					Console.WriteLine("\nP.S. : Vous pouvez taper quit a n'importe quel moment pour quitter le logiciel\n");
-
-					input = Console.ReadLine();
-					if (input != "quit")
+					DisplayCase display = new DisplayCase(input, studentslist, teacherslist, activitieslist);
+					Console.WriteLine(display);
+					while (display.ToString() == "Veuillez entrer l'un des numeros de liste existants" & input != "quit")
 					{
-						DisplayCase display = new DisplayCase(input, studentslist, teacherslist, activitieslist);
-						Console.WriteLine(display);
-						while (display.ToString() == "Veuillez entrer l'un des numeros de liste existants" & input != "quit")
-						{
-							input = Console.ReadLine();
-							if (input != "quit")
-							{
-
-								display = new DisplayCase(input, studentslist, teacherslist, activitieslist);
-								Console.WriteLine(display);
-							}			
-						}
+						input = Console.ReadLine();
 						if (input != "quit")
 						{
-							input = Console.ReadLine();
-						}
-						if (input != "B" & input != "quit")
-						{
-							Console.WriteLine(display.ChosenList(input));
-							while ((display.ChosenList(input) == "Veuillez entrer l'un des matricules existants\n" ||
-								display.ChosenList(input) == "Veuillez entrer un trigramme existant\n" ||
-					            display.ChosenList(input) == "Veuillez entrer l'un des codes d'activites existants\n") & 
-						           input != "quit")
-							{
-								input = Console.ReadLine();
-								if (input != "quit")
-								{
-									Console.WriteLine(display.ChosenList(input));
-								}
-							}
 
+							display = new DisplayCase(input, studentslist, teacherslist, activitieslist);
+							Console.WriteLine(display);
+						}			
+					}
+					if (input != "quit")
+					{
+						input = Console.ReadLine();
+					}
+					if (input != "B" & input != "quit")
+					{
+						Console.WriteLine(display.ChosenList(input));
+						while ((display.ChosenList(input) == "Veuillez entrer l'un des matricules existants\n" ||
+							display.ChosenList(input) == "Veuillez entrer un trigramme existant\n" ||
+				            display.ChosenList(input) == "Veuillez entrer l'un des codes d'activites existants\n") & 
+					           input != "quit")
+						{
+							input = Console.ReadLine();
 							if (input != "quit")
 							{
-								Console.WriteLine("Tapez B pour revenir au menu principal ou tapez quit ou n'importe " +
-							                      "quoi d'autre pour quitter le programme");
-								input = Console.ReadLine();
+								Console.WriteLine(display.ChosenList(input));
 							}
+						}
 
+						if (input != "quit")
+						{
+							Console.WriteLine("Tapez B pour revenir au menu principal ou tapez quit ou n'importe " +
+						                      "quoi d'autre pour quitter le programme");
+							input = Console.ReadLine();
 						}
 
 					}
-	
-		
-				}
-			Console.WriteLine("\nBye");
 
+				}
+
+	
 			}
+			Console.WriteLine("\nBye");
 		}
 	}
+}

@@ -58,34 +58,38 @@ namespace EvaluationSystem
 				}
 			}
 
+			System.IO.StreamReader allactivities = new System.IO.StreamReader("Activities.txt");
 
-			//else 
-			//{ 
-			//	System.IO.StreamReader allTeachers = new System.IO.StreamReader("Teachers.txt");
-			//	while ((line = allTeachers.ReadLine()) != null)
-			//	{
-			//		string[] splitteachers = line.Split(new Char[] { ';' });
-			//		Teacher teacher = new Teacher(splitteachers[0], splitteachers[1], Convert.ToInt32(splitteachers[2]), splitteachers[3]);
-			//		for (int i = 4; i < splitteachers.Length; i++)
-			//		{
-			//			foreach (Student student in this._studentslist)
-			//			{
-			//				if (student.Matricule.ToString() == splitteachers[i])
-			//				{
-			//					teacher.AddStudent(student);
-			//				}
-			//			}
-			//		}
-			//		this._teacherslist.Add(teacher);
-			//	}
-			//}
+			//Display every students that the teacher has in each activity
+			while ((line = allactivities.ReadLine()) != null)
+			{
+				string[] splitactivities = line.Split(new Char[] { ';' });
+				foreach (Teacher element in this._teacherslist)
+				{
+					if (element.Trigram == splitactivities[3] & element.Trigram == this._input)
+					{
+						display += string.Format("\nLes eleves de {0} {1} de l'activite {2} sont\n", element.Firstname, 
+						                         element.Lastname, splitactivities[1]);
+						foreach (Student eachstudent in this._studentslist)
+						{
+							for (int i = 4; i < splitactivities.Length; i++)
+							{
+								if (eachstudent.Matricule.ToString() == splitactivities[i])
+								{
+									display += eachstudent.DisplayName() + "\n";
+								}
+						   }
+						}
+
+					}
+				}
+			}
 
 			string salary = "";
 			foreach (Teacher teacher in this._teacherslist)
 			{
 				if (teacher.Trigram == this._input)
 				{
-					display = teacher.DisplayStudents();
 					salary = teacher.Salary;
 					
 				}

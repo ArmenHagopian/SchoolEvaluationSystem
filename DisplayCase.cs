@@ -142,7 +142,8 @@ namespace EvaluationSystem
 			else if (_teacherchosen == true)
 			{
 				string displayteacher = "";
-				displayteacher = new ReturnTeachersinfo(this._teacherslist, this._studentslist, input).ToString();
+				List<Teacher> newteacherslist = new List<Teacher>();
+				displayteacher = new ReturnTeachersinfo(newteacherslist, this._studentslist, input).ToString();
 				if (displayteacher != "")
 				{
 					return displayteacher;

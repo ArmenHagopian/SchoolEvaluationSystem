@@ -1,3 +1,4 @@
-5;Informatique;IN20;LUR
-7;Math;MA20;HIL
-3;Base de donnees;BD20;LRG
+5;Informatique;IN20;LUR;14000;14001
+7;Math;MA20;HIL;14000;14002
+3;Base de donnees;BD20;LRG;14000;14001;14002
+6;Programmation Objet;PO20;CBF;14000

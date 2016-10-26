@@ -6,19 +6,13 @@ namespace EvaluationSystem
 	public class Appreciation : Evaluation
 	{
 		private string _appreciation;
-		//private int cote;
 		public Appreciation(Activity activity, string appreciation) : base(activity)
 		{
 			this._appreciation = appreciation;
 		}
 		public void setAppreciation(string appreciation)
 		{
-			//Dictionary<string, int> cotes = new Dictionary<string, int>();
-			//List<string> apppreciation = new List<string>;
-			//Dictionary<string, int>.KeyCollection keycotes = cotes.Keys;
-			//cote = cotes[this._appreciation];
 			this._appreciation = appreciation;
-
 		}
 		public override int Note()
 		{

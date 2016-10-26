@@ -21,6 +21,10 @@ namespace EvaluationSystem
 			Students.Add(student);
 			this.has_students = true;
 		}
+		public List<Student> Studentslist
+		{
+			get { return Students;}
+		}
 		public string DisplayStudents()
 		{
 			string display = string.Format("Ci-desssous sont repris tous les eleves de {0} {1} :\n", Firstname, Lastname);
@@ -40,17 +44,3 @@ namespace EvaluationSystem
 		}
 	}
 }
-
-//using System;
-
-//namespace Relations_classes_objets
-//{
-//	class MainClass
-//	{
-//		public static void Main(string[] args)
-//		{
-//			Teacher teacher = new Teacher("Armen", "Hagopian", 10);
-//			Console.WriteLine("Salaire : " + teacher.Salary + ", " + teacher);
-//		}
-//	}
-//}
