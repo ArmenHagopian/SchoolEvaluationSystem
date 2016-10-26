@@ -5,7 +5,7 @@ namespace EvaluationSystem
 {
 	public class Student : Person
 	{
-		private List<Evaluation> Cours = new List<Evaluation>();        //Evaluation contient appreciation et note et //private donc uniquement accessible dans toute la classe
+		private List<Evaluation> Cours = new List<Evaluation>();
 		private string _firstname;
 		private string _lastname;
 		private int _matricule;
@@ -29,10 +29,6 @@ namespace EvaluationSystem
 		}
 		public double Average()
 		{
-			//for (int i = 0; i < Cours.Count; i++)
-			//{
-			//	Cours[i].Note();
-			//}
 			double average = 0;
 			foreach (Evaluation e in Cours)
 			{

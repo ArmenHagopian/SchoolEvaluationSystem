@@ -9,11 +9,12 @@ namespace EvaluationSystem
 			this._note = note;
 		}
 
-		public override int Note()          //methode
+		public override int Note()
 		{
 			return this._note;
 		}
-		public void setNote(int note)       //pour modifier une note existante
+
+		public void setNote(int note)
 		{
 			this._note = note;
 		}

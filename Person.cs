@@ -1,7 +1,7 @@
 ﻿using System;
 namespace EvaluationSystem
 {
-	public class Person     //est prive si met pas public class
+	public class Person
 	{
 		private string _firstname;
 		private string _lastname;
@@ -9,10 +9,9 @@ namespace EvaluationSystem
 		{
 			this._firstname = Firstname;
 			this._lastname = Lastname;
-
 		}
 
-		public string Firstname     //public donc on peut y acceder en faisant student.Firstname
+		public string Firstname
 		{
 			get { return this._firstname; }
 		}
@@ -26,7 +25,7 @@ namespace EvaluationSystem
 			return "Firstname : " + Firstname + ", Lastname : " + Lastname;
 		}
 
-		public override string ToString()       //permet d'appeler directement DisplayName quand cree nouvel objet student par exemple : Person student = new Person("Armen", "Hagopian"); Console.WriteLine(student);
+		public override string ToString()
 		{
 			return this.DisplayName();
 		}
