@@ -57,7 +57,7 @@ namespace EvaluationSystem
 					bulletin += eval.Activity.Name + "\t" + eval.Activity.Code + "\t\t" + eval.Activity.ECTS + "\t\t" + eval.Note() + "\n";
 				}
 			}
-			bulletin = string.Format("Bulletin de {0} {1} : \n\n{2}\nLa moyenne obtenue est de {3}\n\n\n\n",
+			bulletin = string.Format("Bulletin de {0} {1} : \n\n{2}\nLa moyenne obtenue est de {3}\n",
 									  this._firstname, this._lastname, bulletin, Average());
 
 			return bulletin;

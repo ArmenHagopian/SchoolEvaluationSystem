@@ -90,8 +90,8 @@ namespace EvaluationSystem
 					
 				}
 			}
-			display += "\n\nEt son salaire : " + salary +  " euros";
-			if (display == "\n\nEt son salaire : " + salary + " euros")
+			display += "\nEt son salaire : " + salary +  " euros\n";
+			if (display == "\nEt son salaire : " + salary + " euros\n")
 			{
 				return "";
 			}
