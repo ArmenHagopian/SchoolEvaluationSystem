@@ -43,14 +43,14 @@ namespace EvaluationSystem
 					{
 						input = Console.ReadLine();
 					}
-					//if the input is B then the program goes back to the first menu
+					//If the input is B then the program goes back to the first menu
 					if (input != "B" & input != "quit")
 					{
 						Console.WriteLine(display.ChosenList(input));
 						while ((display.ChosenList(input) == "Veuillez entrer l'un des matricules existants\n" ||
 							display.ChosenList(input) == "Veuillez entrer un trigramme existant\n" ||
 							display.ChosenList(input) == "Veuillez entrer l'un des codes d'activites existants\n") &
-							   input != "quit")
+							input != "quit")
 						{
 							input = Console.ReadLine();
 							if (input != "quit")

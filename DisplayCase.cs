@@ -79,7 +79,7 @@ namespace EvaluationSystem
 					}
 
 					return teacherdisplay + "\nChoisir un enseignant en donnant son trigramme pour afficher son salaire " +
-					"et tous ces eleves ou taper B pour revenir au menu principal.";
+					"et tous ses eleves en fonction des ses activites ou taper B pour revenir au menu principal.";
 				//Displays the activities
 				case "3":
 
@@ -111,7 +111,7 @@ namespace EvaluationSystem
 					}
 
 					return activitydisplay + "\nChoisir une activite en donnant son code pour afficher le(s) livre(s) " +
-					"associe(s) et les eleves qui y sont inscrits ou taper B pour revenir au menu principal.";
+					"associe(s) ou taper B pour revenir au menu principal.";
 
 				default:
 
