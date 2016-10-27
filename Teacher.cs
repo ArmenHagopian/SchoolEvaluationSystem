@@ -25,6 +25,7 @@ namespace EvaluationSystem
 		{
 			get { return Students;}
 		}
+		//Returns the registration number(matricule), the first and last name of the student in a proper way
 		public string DisplayStudents()
 		{
 			string display = string.Format("Ci-desssous sont repris tous les eleves de {0} {1} :\n", Firstname, Lastname);

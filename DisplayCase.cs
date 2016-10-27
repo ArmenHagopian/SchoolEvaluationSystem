@@ -50,10 +50,10 @@ namespace EvaluationSystem
 						studentdisplay += string.Format("{0}/ {1}, Matricule : {2}\n", counter, eachstudent.DisplayName(), eachstudent.Matricule);
 						counter++;
 					}
-					
+
 					return studentdisplay + "\nChoisir un etudiant pour afficher son bulletin en donnant le numero de son matricule ou taper B pour revenir au menu principal.";
-				
-					//Displays the list of teachers
+
+				//Displays the list of teachers
 				case "2":
 					_studentchosen = false;
 					_teacherchosen = true;
@@ -77,12 +77,12 @@ namespace EvaluationSystem
 						teacherdisplay += string.Format("{0}/ {1}, Trigramme : {2}\n", counter, eachteacher.DisplayName(), eachteacher.Trigram);
 						counter++;
 					}
-					
+
 					return teacherdisplay + "\nChoisir un enseignant en donnant son trigramme pour afficher son salaire " +
 					"et tous ces eleves ou taper B pour revenir au menu principal.";
 				//Displays the activities
 				case "3":
-					
+
 					_studentchosen = false;
 					_teacherchosen = false;
 					_activitychosen = true;
@@ -111,18 +111,18 @@ namespace EvaluationSystem
 					}
 
 					return activitydisplay + "\nChoisir une activite en donnant son code pour afficher le(s) livre(s) " +
-					"associe(s) ou taper B pour revenir au menu principal.";
+					"associe(s) et les eleves qui y sont inscrits ou taper B pour revenir au menu principal.";
 
 				default:
 
 					return "Veuillez entrer l'un des numeros de liste existants";
-				
+
 			}
 		}
 
 		//Return info about the list chosen by the user
 		public string ChosenList(string input)
-		{   
+		{
 			//Error message displayed when the user doesn't give an existing 'matricule'
 			if (_studentchosen == true)
 			{
@@ -152,7 +152,7 @@ namespace EvaluationSystem
 			else if (_activitychosen == true)
 			{
 				string displayactivities = "";
-		
+
 				ReturnActivities activities = new ReturnActivities(this._teacherslist);
 				//This loop analyses the list of activities for a match between the input and one of the activity
 				foreach (Activity eachactivity in activities.List())

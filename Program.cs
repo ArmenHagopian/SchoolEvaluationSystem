@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
 namespace EvaluationSystem
@@ -15,7 +16,7 @@ namespace EvaluationSystem
 			input = "B";
 
 			//We check several times if the user types the word 'quit' to end the program or B to come back to homepage
-			while (input == "B" & input !="quit")
+			while (input == "B" & input != "quit")
 			{
 				Console.WriteLine("=== Bienvenue dans le meilleur logiciel de gestion d'Evaluations ===");
 				Console.WriteLine("1/ Liste des étudiants.");
@@ -26,7 +27,7 @@ namespace EvaluationSystem
 
 				input = Console.ReadLine();
 				if (input != "quit")
-				{
+				{   //Uses a DisplayCase object to generate a proper response to display after the input
 					DisplayCase display = new DisplayCase(input, studentslist, teacherslist, activitieslist);
 					Console.WriteLine(display);
 					while (display.ToString() == "Veuillez entrer l'un des numeros de liste existants" & input != "quit")
@@ -36,19 +37,20 @@ namespace EvaluationSystem
 						{
 							display = new DisplayCase(input, studentslist, teacherslist, activitieslist);
 							Console.WriteLine(display);
-						}			
+						}
 					}
 					if (input != "quit")
 					{
 						input = Console.ReadLine();
 					}
+					//if the input is B then the program goes back to the first menu
 					if (input != "B" & input != "quit")
 					{
 						Console.WriteLine(display.ChosenList(input));
 						while ((display.ChosenList(input) == "Veuillez entrer l'un des matricules existants\n" ||
 							display.ChosenList(input) == "Veuillez entrer un trigramme existant\n" ||
-				            display.ChosenList(input) == "Veuillez entrer l'un des codes d'activites existants\n") & 
-					           input != "quit")
+							display.ChosenList(input) == "Veuillez entrer l'un des codes d'activites existants\n") &
+							   input != "quit")
 						{
 							input = Console.ReadLine();
 							if (input != "quit")
@@ -60,7 +62,7 @@ namespace EvaluationSystem
 						if (input != "quit")
 						{
 							Console.WriteLine("Tapez B pour revenir au menu principal ou tapez quit ou n'importe " +
-						                      "quoi d'autre pour quitter le programme");
+											  "quoi d'autre pour quitter le programme");
 							input = Console.ReadLine();
 						}
 					}
