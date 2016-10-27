@@ -6,9 +6,9 @@ namespace EvaluationSystem
 	public class DisplayCase
 	{
 		private string _input;
-		List<Student> _studentslist;
-		List<Teacher> _teacherslist;
-		List<Activity> _activitieslist;
+		private List<Student> _studentslist;
+		private List<Teacher> _teacherslist;
+		private List<Activity> _activitieslist;
 		private bool _studentchosen = false;
 		private bool _teacherchosen = false;
 		private bool _activitychosen = false;
