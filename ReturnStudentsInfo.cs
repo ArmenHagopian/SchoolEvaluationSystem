@@ -4,8 +4,6 @@ namespace EvaluationSystem
 {
 	public class ReturnStudentsInfo
 	{
-
-
 		private List<Student> _studentslist;
 		private List<Teacher> _teacherslist;
 		private List<Activity> _activitieslist;
@@ -36,9 +34,9 @@ namespace EvaluationSystem
 							while ((line = evaluations.ReadLine()) != null)
 							{
 								string[] evaluation = line.Split(new Char[] { ';' });
+								//On each line of the document, the Student's matricule is the third element
 								if (evaluation[2] == student.Matricule.ToString())
 								{
-
 									if (this._activitieslist.Count == 0)
 									{
 										ReturnActivities result = new ReturnActivities(this._teacherslist);
@@ -48,9 +46,11 @@ namespace EvaluationSystem
 
 									foreach (Activity eachactivity in this._activitieslist)
 									{
+										//The "Code" of each Activity is the first element of each line of the document
 										if (eachactivity.Code == evaluation[0])
 										{
 											int value;
+											//Create different object given that evaluation can be string or number
 											if (int.TryParse(evaluation[1], out value))
 											{
 												Cote cotestudent = new Cote(eachactivity,
@@ -72,10 +72,10 @@ namespace EvaluationSystem
 					}
 					else
 					{
-							if (student.Matricule.ToString() == this._input)
-							{
-								displaystudent += student.Bulletin();
-							}
+						if (student.Matricule.ToString() == this._input)
+						{
+							displaystudent += student.Bulletin();
+						}
 					}
 				}
 
