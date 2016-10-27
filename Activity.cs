@@ -41,10 +41,12 @@ namespace EvaluationSystem
 			Books.Add(book);
 		}
 
+		//
 		public string DisplayBook()
 		{
 			string display = string.Format("Les livres de {0} sont :\n", this._name);
 
+			//Display sentence in the singular if there is only one book
 			if (Books.Count == 1)
 			{
 				display = string.Format("Le livre de {0} est :\n", this._name);
@@ -53,6 +55,7 @@ namespace EvaluationSystem
 			{
 				display += book.Name + " (" + book.Price + " euros)" + "\n";
 			}
+			//We display that there is no Book specified for this activity
 			if (Books.Count == 0)
 			{
 				display = "Pas de livre encodé";
