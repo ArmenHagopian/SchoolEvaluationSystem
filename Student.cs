@@ -40,7 +40,6 @@ namespace EvaluationSystem
 		public string Bulletin()
 		{
 			string bulletin = "Nom du cours" + "\tCode du cours" + "\tNbre ECTS" + "\tCote obtenue\n";
-			//Dictionary<Activity, string> bulletin = new Dictionary<Activity, string>();
 			foreach (Evaluation eval in Cours)
 			{
 				//aligne les informaions dans les colonnes du tableau du bulletin
