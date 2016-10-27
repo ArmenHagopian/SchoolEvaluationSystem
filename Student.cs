@@ -21,6 +21,7 @@ namespace EvaluationSystem
 		public void Add(Evaluation evaluation)
 		{
 			Cours.Add(evaluation);
+			//Allows to know if we have given Evaluations to the student, if Cours is not empty
 			is_evaluated = true;
 		}
 		public int Matricule
@@ -37,12 +38,14 @@ namespace EvaluationSystem
 
 			return average / Cours.Count;
 		}
+
+		//Student's report is returned based on his info and given Evaluations
 		public string Bulletin()
 		{
 			string bulletin = "Nom du cours" + "\tCode du cours" + "\tNbre ECTS" + "\tCote obtenue\n";
 			foreach (Evaluation eval in Cours)
 			{
-				//aligne les informaions dans les colonnes du tableau du bulletin
+				//More or less tab depending on the length of the name of the activity to align the displayed report
 				if (eval.Activity.Name.Length < 10)
 				{
 					bulletin += eval.Activity.Name + "\t\t" + eval.Activity.Code + "\t\t" + eval.Activity.ECTS + "\t\t" + eval.Note() + "\n";
