@@ -111,7 +111,7 @@ namespace EvaluationSystem
 					}
 
 					return activitydisplay + "\nChoisir une activite en donnant son code pour afficher le(s) livre(s) " +
-					"associe(s) et les eleves qui y sont inscrits ou taper B pour revenir au menu principal.";
+					"associe(s) ou taper B pour revenir au menu principal.";
 
 				default:
 
