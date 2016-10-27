@@ -30,6 +30,7 @@ namespace EvaluationSystem
 				{   //Uses a DisplayCase object to generate a proper response to display after the input
 					DisplayCase display = new DisplayCase(input, studentslist, teacherslist, activitieslist);
 					Console.WriteLine(display);
+					//Error message displayed when the user doesn't give an existing list number
 					while (display.ToString() == "Veuillez entrer l'un des numeros de liste existants" & input != "quit")
 					{
 						input = Console.ReadLine();
@@ -47,6 +48,7 @@ namespace EvaluationSystem
 					if (input != "B" & input != "quit")
 					{
 						Console.WriteLine(display.ChosenList(input));
+						//Error message displayed when the user doesn't give an existing list number
 						while ((display.ChosenList(input) == "Veuillez entrer l'un des matricules existants\n" ||
 							display.ChosenList(input) == "Veuillez entrer un trigramme existant\n" ||
 							display.ChosenList(input) == "Veuillez entrer l'un des codes d'activites existants\n") &

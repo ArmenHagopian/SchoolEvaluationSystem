@@ -34,7 +34,6 @@ namespace EvaluationSystem
 					string line;
 					if (this._studentslist.Count == 0)
 					{
-						// Read the file line by line.
 						System.IO.StreamReader allStudents = new System.IO.StreamReader("Students.txt");
 						while ((line = allStudents.ReadLine()) != null)
 						{
@@ -80,7 +79,7 @@ namespace EvaluationSystem
 
 					return teacherdisplay + "\nChoisir un enseignant en donnant son trigramme pour afficher son salaire " +
 					"et tous ses eleves en fonction des ses activites ou taper B pour revenir au menu principal.";
-				//Displays the activities
+				//Displays the list of activities
 				case "3":
 
 					_studentchosen = false;
@@ -99,7 +98,7 @@ namespace EvaluationSystem
 
 					foreach (Activity eachactivity in this._activitieslist)
 					{
-						//More or less tab depending on the length of the name of the activity 
+						//More or less tab depending on the length of the name of the activity to align
 						if (eachactivity.Name.Length < 10)
 						{
 							activitydisplay += eachactivity.Name + "\t\t" + eachactivity.Code + "\t\t" + eachactivity.ECTS + "\t\t" + eachactivity.Teacher.Trigram + "\n";
@@ -123,7 +122,6 @@ namespace EvaluationSystem
 		//Return info about the list chosen by the user
 		public string ChosenList(string input)
 		{
-			//Error message displayed when the user doesn't give an existing 'matricule'
 			if (_studentchosen == true)
 			{
 				//Default value to display if user doesn't give an existing 'matricule'
@@ -134,9 +132,10 @@ namespace EvaluationSystem
 				{
 					return displaystudent;
 				}
+				//Error message displayed when the user doesn't give an existing 'matricule'
 				return "Veuillez entrer l'un des matricules existants\n";
 			}
-			//Error message displayed when the user doesn't give an existing trigram
+
 			else if (_teacherchosen == true)
 			{
 				string displayteacher = "";
@@ -146,15 +145,16 @@ namespace EvaluationSystem
 				{
 					return displayteacher;
 				}
+				//Error message displayed when the user doesn't give an existing trigram
 				return "Veuillez entrer un trigramme existant\n";
 			}
-			//Error message displayed when the user doesn't give an existing codes
+
 			else if (_activitychosen == true)
 			{
 				string displayactivities = "";
 
 				ReturnActivities activities = new ReturnActivities(this._teacherslist);
-				//This loop analyses the list of activities for a match between the input and one of the activity
+				//Analyze the list of activities for a match between the input and one of the activities
 				foreach (Activity eachactivity in activities.List())
 				{
 					if (eachactivity.Code == input)
@@ -166,6 +166,7 @@ namespace EvaluationSystem
 				{
 					return displayactivities;
 				}
+				//Error message displayed when the user doesn't give an existing Activity code
 				return "Veuillez entrer l'un des codes d'activites existants\n";
 			}
 			return "Error";
